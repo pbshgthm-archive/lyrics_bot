@@ -91,7 +91,7 @@ class StreamListener(tweepy.StreamListener):
                 artist,song,lyric=get_line(line)
                 log=open("log.txt","a")
                 log.write(status.text)
-                
+                print("new")
                 meta="\n#"+artist+"  #"+song
                 api.create_favorite(status.id)
                 try:
@@ -113,7 +113,7 @@ class StreamListener(tweepy.StreamListener):
                     api.update_status(status=lyric+meta+"\n"+quote)
                 
                 log=open("log.txt","a")
-                log.write("\n+"lyric+meta+"\n")
+                log.write("\n"+lyric+meta+"\n")
                 
                 api.create_friendship(user)
                 print("All ok")
