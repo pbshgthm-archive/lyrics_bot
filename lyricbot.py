@@ -40,6 +40,7 @@ def get_lyric(url):
     title = re.findall ( t_fp+'(.*?)'+t_rp,soup, re.DOTALL)[0]
     t_clean=re.compile('\[.*?\]')   
     title=re.sub(t_clean,'',title).replace(" ","")
+    title=re.sub(r'[^a-zA-Z0-9]','', title)
 
     a_fp='<h2><b>'
     a_rp=' Lyrics</b></h2>'
@@ -48,7 +49,7 @@ def get_lyric(url):
     artist = re.findall ( a_fp+'(.*?)'+a_rp,soup, re.DOTALL)[0]
     a_clean=re.compile('\[.*?\]')   
     artist=re.sub(a_clean,'',artist).replace(" ","")
-
+    artist=re.sub(r'[^a-zA-Z0-9]','', artist)
 
     lyric=[x for x in lyric.split('\n') if x!=""]
     return artist,title,lyric
@@ -91,7 +92,7 @@ class StreamListener(tweepy.StreamListener):
                 log=open("log.txt","a")
                 log.write(status.text)
                 
-                meta="\n#"+artist+"  #"+song+"\n#"+handle
+                meta="\n#"+artist+"  #"+song
                 api.create_favorite(status.id)
                 try:
                     api.update_status(status=lyric+meta, in_reply_to_status_id = status.id,auto_populate_reply_metadata=True)
@@ -121,7 +122,7 @@ class StreamListener(tweepy.StreamListener):
         except Exception as e:
             print(e)
             log=open("log.txt","a")
-            log.write("\n"+e+"\n\n")
+            log.write("\n"+str(e)+"\n\n")
         
     def on_error(self, status_code):
         if status_code == 420:
