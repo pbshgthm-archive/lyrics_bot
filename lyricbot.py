@@ -86,12 +86,12 @@ class StreamListener(tweepy.StreamListener):
             if status.entities['user_mentions'][0]['screen_name']==handle:
                 user=status.user.screen_name
                 line=status.text.replace("@"+handle,"").replace("\n","")
-                print(line)
+                print(status.text)
                 artist,song,lyric=get_line(line)
+                log=open("log.txt","a")
+                log.write(status.text)
                 
-                #api.update_status(status=".@"+user+"\n"+lyric, in_reply_to_status_id = status.id)
                 meta="\n#"+artist+"  #"+song+"\n#"+handle
-                print(lyric,len(lyric),"\n")
                 api.create_favorite(status.id)
                 try:
                     api.update_status(status=lyric+meta, in_reply_to_status_id = status.id,auto_populate_reply_metadata=True)
@@ -105,16 +105,23 @@ class StreamListener(tweepy.StreamListener):
 
 
                 quote="https://twitter.com/"+user+"/status/"+str(status.id)
-                #print(quote)
                 try:
                     api.update_status(status=lyric+meta+"\n"+quote)
                 except:
                     lyric="\n".join(lyric.split("\n")[1:])
                     api.update_status(status=lyric+meta+"\n"+quote)
+                
+                log=open("log.txt","a")
+                log.write("\n+"lyric+meta+"\n")
+                
                 api.create_friendship(user)
-                print(lyric)
+                print("All ok")
+                log=open("log.txt","a")
+                log.write("\nAll ok\n\n")
         except Exception as e:
             print(e)
+            log=open("log.txt","a")
+            log.write("\n"+e+"\n\n")
         
     def on_error(self, status_code):
         if status_code == 420:
