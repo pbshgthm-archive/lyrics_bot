@@ -1,0 +1,4 @@
+consumer_key="MSCQlqhibr3BTTX0GPvjAWpFn"
+consumer_secret="8LVe78X3jVxEU8YgvqHfB3DLk4H2aZRvxNAGlhuHk81baUatZc"
+access_token="877175674724679680-eiA22XdNtUXshBL3uwfsfzSmzscP5gk"
+access_token_secret="wZi8Ra5a918lpGMOwCcgwuXHUNX9Wi6ZzbynoojwJF6Dr"
