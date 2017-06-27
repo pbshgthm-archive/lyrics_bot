@@ -2,7 +2,6 @@ import tweepy
 from bot_conf import *
 from lyric_engine import Engine
 
-handle="bot_c137"
 
 class StreamListener(tweepy.StreamListener):
 
