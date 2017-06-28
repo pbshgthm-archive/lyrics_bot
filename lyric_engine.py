@@ -4,9 +4,6 @@ from difflib import SequenceMatcher
 from bs4 import BeautifulSoup
 import re
 
-from lyric_conf import *
-
-
 
 
 class Engine():
@@ -24,10 +21,10 @@ class Engine():
 	artist=None
 
 	state=None
+	not_found="Sorry! couldn't find the song"
 
-	def __init__(self,tweet):
-		
-		global conf
+	def __init__(self,tweet,conf):
+	
 		self.input_line=tweet['input_line']
 		self.conf=conf
 		self.meta=tweet
@@ -103,7 +100,7 @@ class Engine():
 		for i in self.full_lyric:
 			sim_score.append(SequenceMatcher(None,i,self.input_line).ratio())
 			ind=sim_score.index(max(sim_score))
-
+		print(max(sim_score))
 		if ind==len(self.full_lyric)-1:
 			ind=ind-2
 		
@@ -153,34 +150,30 @@ class Engine():
 
 		if not self.state=="initialized":
 			return "uninitialised"
-
-		self.find_song()
 		
+		self.find_song()
+		self.log()
 		if not self.state=="song_found":
 			return self.state
-		
+				
 		self.get_lyric()
+		self.log()
 		if not self.state=="lyrics_fetched":
 			return self.state
 		try:
 			self.get_line()
+			self.log()
 		except:
 			pass
 			print(self.state)
 
 		if not self.state.split("|")[1][:3]=="qte":
 			return "lyric_creation_failed"
-
+		self.log()
 		return "response_created"
 
 
 	def reply(self):
-
-		try:
-			if not self.state.split("|")[1][:3]=="qte":
-				return "cannot_respond"
-		except:
-			return "cannot_respond"
 		
 		if not self.response.split("|")[0]=="rep_too_long":
 			decors="#"+self.artist+" #"+self.track
@@ -190,11 +183,6 @@ class Engine():
 
 	def quote(self):
 
-		try:
-			if not self.state.split("|")[1][:3]=="qte":
-				return "cannot_respond"
-		except:
-			return "cannot_respond"
 		if not self.response.split("|")[1]=="qte_too_long":
 			decors="#"+self.artist+" #"+self.track
 			q="\nhttps://twitter.com/"+self.meta['screen_name']
@@ -208,3 +196,12 @@ class Engine():
 	def log(self):
 		
 		print(self.state)
+
+	def allokay(self):
+		try:
+			if not self.state.split("|")[1][:3]=="qte":
+				return False
+			
+			return True 
+		except:
+			return False

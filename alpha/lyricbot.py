@@ -68,7 +68,7 @@ def get_line(search_key):
     for i in lyrics:
         sim_score.append(SequenceMatcher(None,i,search_key).ratio())
     ind=sim_score.index(max(sim_score))
-    
+    print(max(sim_score))
     if ind==len(lyrics)-1:
         ind=ind-2
         print("last")
