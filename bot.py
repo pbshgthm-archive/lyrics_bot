@@ -2,11 +2,6 @@ import tweepy
 from config import bot_auth, engine_conf
 from lyric_engine import Engine
 
-<<<<<<< HEAD
-
-=======
->>>>>>> befdd3c2bfca40151f7dcd2942da056a517bbeb5
-
 class StreamListener(tweepy.StreamListener):
 
 	def set_conf(self,conf):
