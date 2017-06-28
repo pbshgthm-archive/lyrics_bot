@@ -19,9 +19,12 @@ class StreamListener(tweepy.StreamListener):
 				return
 			#'''
 
-			bot.create_favorite(status.id)
-			bot.create_friendship(status.user.screen_name)
-
+			try:
+				bot.create_favorite(status.id)
+				bot.create_friendship(status.user.screen_name)
+			except:
+				pass
+				
 			tweet={}
 			tweet['screen_name']=status.user.screen_name
 			tweet['tweet_id']=status.id
