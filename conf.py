@@ -1,7 +1,0 @@
-consumer_key="2dMXqpPBcAp3wGepEdp1Mp9vh"
-consumer_secret="ipwvqO7C6tMxp6efQCySvpt9u2mu1gmCvlfWQxHVJvKcoNAASt"
-
-access_token="878302878728724481-1iTtxPSx57fXPCj8KmtpdfS0MEgheXy"
-access_token_secret="zsmhoNRYlQ8dn0B88FAdeUcGLoqgOdUkDVhHfXgP6aoNt"
-
-handle="singthiswithme"
