@@ -1,3 +1,0 @@
-tweepy
-BeautifulSoup4
-google-api-python-client
