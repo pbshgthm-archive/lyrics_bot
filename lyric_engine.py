@@ -71,7 +71,8 @@ class Engine():
 			self.artist=re.sub(r'[^a-zA-Z0-9]','', artist)
 			self.state="lyrics_fetched"
 
-		except:
+		except Exception as e:
+			print(e)
 			self.state="lyric_fetch_failed"
 
 

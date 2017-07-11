@@ -20,7 +20,7 @@ bot_auth['access_token_secret']="wZi8Ra5a918lpGMOwCcgwuXHUNX9Wi6ZzbynoojwJF6Dr"
 
 
 bot_auth={}
-bot_auth['consumer_key']="2dMXqpPBcAp3wGepEdp1Mp9vh"
-bot_auth['consumer_secret']="ipwvqO7C6tMxp6efQCySvpt9u2mu1gmCvlfWQxHVJvKcoNAASt"
+bot_auth['consumer_key']="gvJrfoJy5oiKPhVzudJWFU5tN"
+bot_auth['consumer_secret']="QtvoBTYmgIRdhIAM92tC6yTIEirOUlnnXyHteyVVeIteuS8s6G"
 bot_auth['access_token']="878302878728724481-1iTtxPSx57fXPCj8KmtpdfS0MEgheXy"
 bot_auth['access_token_secret']="zsmhoNRYlQ8dn0B88FAdeUcGLoqgOdUkDVhHfXgP6aoNt"
